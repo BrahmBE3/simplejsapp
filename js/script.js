@@ -1,10 +1,10 @@
 let pokemonList=[
-  {name:'Dragonite' , type:['dragon','flying'] , Category:'dragon' },
-  {name:'Charmeleon' , type:['Fire'] , Category:'Flame'},
-  {name:'Charizard' , type:['Fire','Flying'] , Category:'Flame'},
-  {name:'Blastoise' , type:['Water'] , Category:'Shellfish'},
-  {name:'Growlithe' , type:['Fire'] , Category:'Puppy'},
-  {name:'Raichu' ,  type:['Electric'] , Category:'Mouse'},
-  {name:'Machoke' ,  type:['Fighting'] , Category:'Superpower'},
-  {name:'Jigglypuff' , type:['Normal','Fairy'] , Category:'Balloon'}
+  {name:'Dragonite' , types:['dragon','flying'] , Category:'dragon' },
+  {name:'Charmeleon' , types:['Fire'] , Category:'Flame'},
+  {name:'Charizard' , types:['Fire','Flying'] , Category:'Flame'},
+  {name:'Blastoise' , types:['Water'] , Category:'Shellfish'},
+  {name:'Growlithe' , types:['Fire'] , Category:'Puppy'},
+  {name:'Raichu' ,  types:['Electric'] , Category:'Mouse'},
+  {name:'Machoke' ,  types:['Fighting'] , Category:'Superpower'},
+  {name:'Jigglypuff' , types:['Normal','Fairy'] , Category:'Balloon'}
 ];
