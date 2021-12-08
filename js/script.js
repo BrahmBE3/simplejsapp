@@ -12,12 +12,12 @@ let pokemonList = [
 for ( var i = 0 ; i < pokemonList.length ; i++){
   /* For got three steeps in it (1. starter ||  initialzer gives you information about vere loop have to start ike a starting point) ; (2. condetion where should loop needs to end to which number or point);(3.Incremantor or decremaantor goes both direction ascending and decending represent as (i++ or i+1)(i-- or i-1))*/
 if (pokemonList[i].height < 8.0 && pokemonList[i].height > 5.0 ) {
-  document.write(pokemonList[i].name + '  ' + pokemonList[i].height + ' ' + '  wow! thats big pokemon  ');
+  document.write(pokemonList[i].name + '  ' + pokemonList[i].height + ' ' + '-  wow! thats big pokemon  ');
 }
 else if (pokemonList[i].height < 5.0 && pokemonList[i].height > 3.0) {
-  document.write(pokemonList[i].name + '  ' + pokemonList[i].height + ' ' + '  wow! thats average size pokemon  ');
+  document.write(pokemonList[i].name + '  ' + pokemonList[i].height + ' ' + '-  wow! thats average size pokemon  ');
 }
 else {
-document.write(pokemonList[i].name + '  ' + pokemonList[i].height + ' ' + '  small pokemon  ');
+document.write(pokemonList[i].name + '  ' + pokemonList[i].height + ' ' + '-  small pokemon  ');
 }
 }
