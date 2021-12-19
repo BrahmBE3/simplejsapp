@@ -15,7 +15,7 @@ function getAll() {
   return pokemonList;
 }
 function add(pokemon){
-   pokemonlist.push(pokemon);
+   pokemonList.push(pokemon);
 }
 return{
   getAll:  getAll,
