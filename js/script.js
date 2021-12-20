@@ -1,6 +1,6 @@
 //IIfe fuction , global variable
 
-let pokemoRepository = (function() {
+let pokemonRepository = (function() {
 let pokemonList = [
   {name:'Dragonite' , height: 7.1 , types:['dragon','flying'] , Category:'dragon'},
   {name:'Charmeleon' ,  height: 5.5 , types:['Fire'] , Category:'Flame'},
@@ -22,14 +22,13 @@ return{
   add: add
 };
 })();
- pokemonList.forEach(function(pokemon)  {
-   if (pokemon.height =< 5.0) {
+ pokemonRepository.getAll().forEach(function(pokemon)  {
+   if (pokemon.height <= 5.0) {
   document.write('Name:' + pokemon.name + '<br>' + 'Height:' + pokemon.height + ' thats a small pokemon');
 } else {
     document.write('Name:' + pokemon.name +'<br>' + 'Height:' + pokemon.height + ' Wow thats a big pokemon');
   }
-}
-);
+});
 console.log(pokemonRepository.getAll());
 
 
