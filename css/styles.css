@@ -1,3 +1,5 @@
 body{
   font-family: 'Playfair Display', serif;
+  height: auto;
+    background: linear-gradient(140deg, #f5eaea 40%, #bb1c2a 60%);
 }
