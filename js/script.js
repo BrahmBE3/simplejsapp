@@ -9,7 +9,7 @@ let pokemonList = [
   {name:'Growlithe' ,  height: 2.5 , types:['Fire'] , Category:'Puppy'},
   {name:'Raichu' ,   height: 5.0 , types:['Electric'] , Category:'Mouse'},
   {name:'Machoke' ,   height: 2.2 , types:['Fighting'] , Category:'Superpower'},
-  {name:'Jigglypuff' ,  height: 2.2 , types:['Normal','Fairy'] , Category:'Balloon'}
+  {name:'Jigglypuff' ,  height: 2.8 , types:['Normal','Fairy'] , Category:'Balloon'}
 ];
 function getAll() {
   return pokemonList;
@@ -23,10 +23,10 @@ return{
 };
 })();
  pokemonRepository.getAll().forEach(function(pokemon)  {
-   if (pokemon.height <= 5.0) {
-  document.write('Name:' + pokemon.name + '<br>' + 'Height:' + pokemon.height + ' thats a small pokemon');
+   if (pokemon.height <= 4.0) {
+   document.write('<p>'+'Name:' +  pokemon.name +  '<br>' + 'Height:' + pokemon.height +'   ' + 'Thats a small pokemon' +'</p>');
 } else {
-    document.write('Name:' + pokemon.name +'<br>' + 'Height:' + pokemon.height + ' Wow thats a big pokemon');
+    document.write('<p>'+'Name:'  +  pokemon.name +'<br>' + 'Height:' + pokemon.height +'    ' + 'WOW! thats a big pokemon' +'</p>');
   }
 });
 console.log(pokemonRepository.getAll());
