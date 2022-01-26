@@ -3,3 +3,7 @@ body{
   height: auto;
     background: linear-gradient(140deg, #f5eaea 40%, #bb1c2a 60%);
 }
+.button{
+  color: #FF0000	;
+  text-shadow: 2px 2px 8px #FF0000;
+}
