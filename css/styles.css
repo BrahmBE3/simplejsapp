@@ -3,8 +3,14 @@ body{
   height: auto;
     background: linear-gradient(140deg, #f5eaea 40%, #bb1c2a 60%);
 }
-.add-button {
+.button-class {
   color: #000000	;
-  text-shadow: 2px 2px 8px #000000;
+  text-shadow: 2px 2px 6px #000000;
+  font-size:15px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.8s;
+
 
 }
