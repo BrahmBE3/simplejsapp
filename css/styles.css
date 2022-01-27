@@ -9,8 +9,7 @@ body{
   font-size:15px;
   text-decoration: none;
   text-align: center;
-  cursor: pointer;
   transition: 0.8s;
-
+  margin: 2px 2px;
 
 }
