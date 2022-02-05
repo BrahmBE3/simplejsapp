@@ -1,72 +1,114 @@
 let pokemonRepository = (function () {
-  let repository = [
-    {
-      name: "Bulbasaur",
-      height: 0.5,
-      types: ["grass", "poison"],
-    },
-    {
-      name: "Lucario",
-      height: 1.5,
-      types: ["fire", "ground"],
-    },
-    {
-      name: "Squirtle",
-      height: 1,
-      types: ["water"],
-    },
-    {
-      name: "Eevee",
-      height: 1.1,
-      types: ["water"],
-    },
+  let pokemonList = [
+    //Give pokemon in the first few taskes
+    // {
+    //   name: "Bulbasaur",
+    //   height: 0.5,
+    //   types: ["grass", "poison"],
+    // },
+    // {
+    //   name: "Lucario",
+    //   height: 1.5,
+    //   types: ["fire", "ground"],
+    // },
+    // {
+    //   name: "Squirtle",
+    //   height: 1,
+    //   types: ["water"],
+    // },
+    // {
+    //   name: "Eevee",
+    //   height: 1.1,
+    //   types: ["water"],
+    // },
   ];
+  // fetching pokemon data with API,(150 pokemons)
+  let apiUrl ="https://pokeapi.co/api/v2/pokemon/?limit=150";
 
   function add(pokemon) {
     if (
       typeof pokemon === "object" &&
       "name" in pokemon &&
-      "height" in pokemon &&
-      "types" in pokemon
+      "detailsUrl" in pokemon
+      // "height" in pokemon &&
+      // "types" in pokemon
     ) {
-      repository.push(pokemon);
+      pokemonList.push(pokemon);
     } else
     {
       console.log("pokemon is not correct");
     }}
-  function getAll() {
-    return repository;
+    function getAll() {
+      return pokemonList;
+    }
+    function addListItem(pokemon){
+      let pokemonList = document.querySelector(".pokemon-list");
+      let listpokemon = document.createElement("li");
+      let button = document.createElement("button");
+      button.innerText = pokemon.name;
+      button.classList.add("button-class");
+      listpokemon.appendChild(button);
+      pokemonList.appendChild(listpokemon);
+      button.addEventListener("click" ,function (event) {
+        showDetails(pokemon);
+      })
+    }
+
+    // adding the loadlist() function
+    function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+  })
   }
 
-  function addListItem(pokemon){
-    let pokemonList = document.querySelector(".pokemon-list");
-    let listpokemon = document.createElement("li");
-    let button = document.createElement("button");
-    button.innerText = pokemon.name;
-    button.classList.add("button-class");
-    listpokemon.appendChild(button);
-    pokemonList.appendChild(listpokemon);
-    button.addEventListener("click" ,function (event) {
-      showDetails(pokemon);
-    })
-  }  function showDetails(){
-    console.log(pokemon.height);
-      console.log(pokemon.types);
-  }
+  // loadDetails fuction for getting details of height and type of pokemons
+  function loadDetails(item) {
+      let url = item.detailsUrl;
+      return fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (details) {
+        // Now we add the details to the item
+        item.imageUrl = details.sprites.front_default;
+        item.height = details.height;
+        item.types = details.types;
+      }).catch(function (e) {
+        console.error(e);
+      });
+    }
+
+
+
+  function showDetails(item) {
+  pokemonRepository.loadDetails(item).then(function () {
+    console.log(item);
+  });
+}
 
   return {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
-    showDetails: showDetails
-
+    loadList: loadList,
+    loadDetails: loadDetails,
+  showDetails: showDetails
   };
 })();
-
-pokemonRepository.add({ name: "Balbasur", height: 0.4, types: ["water"] });
-
-console.log(pokemonRepository.getAll());
-
+//adding a pokemon into the pokemonRepository
+// pokemonRepository.add({ name: "Balbasur", height: 0.4, types: ["water"] });
+//
+// console.log(pokemonRepository.getAll());
+pokemonRepository.loadList().then(function(){
 pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon);
+});
 });
