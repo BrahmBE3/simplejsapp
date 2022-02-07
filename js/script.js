@@ -112,8 +112,8 @@ let modalTypes = document.createElement("p");
 modalTypes.innerText = pokemon.types;
 let modalImg = document.createElement("img");
 modalImgSrc.classList.add("modal-img");
-// modalImgSrc.src=pokemon.imageUrl;
-modalImgSrc.attr("src", pokemon.imageUrl);
+modalImgSrc.src=pokemon.imageUrl;
+
 
 modal.appendChild(closeButtonElement);
 modal.appendChild(modalTitle);
