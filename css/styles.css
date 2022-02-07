@@ -2,6 +2,7 @@ body{
   font-family: 'Playfair Display', serif;
   height: auto;
     background: linear-gradient(140deg, #f5eaea 40%, #bb1c2a 60%);
+
 }
 .button-class {
   color: #000000	;
@@ -11,5 +12,13 @@ body{
   text-align: center;
   transition: 0.8s;
   margin: 2px 2px;
+  align-items: center;
+}
+#modal-container {
+  display: none;
+}
 
+#modal-container.is-visible {
+  /* CSS for modal container - add your own desired CSS styles here */
+  display: block;
 }
