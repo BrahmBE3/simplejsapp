@@ -1,8 +1,11 @@
+* {
+  box-sizing: border-box;
+}
 body{
   font-family: 'Playfair Display', serif;
   height: auto;
     background: linear-gradient(140deg, #f5eaea 40%, #bb1c2a 60%);
-    align-items: center;
+
 }
 .button-class {
   color: #000000	;
@@ -22,23 +25,22 @@ body{
   /* CSS for modal container - add your own desired CSS styles here */
   display: block;
   background-color: transparent;
-  padding: 0px;
+  padding: 10px;
   max-width: 740px;
   height: 75vh;
   width: 50%;
   border-radius: 0px;
   overflow: hidden;
   box-sizing: border-box;
+  text-align: center;
+  align-items: center;
 }
 .modal {
-  margin: auto;
-  display: inline-block;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
-  text-align: left;
-    align-items: center
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
 }
 
   .modal-close {
@@ -48,4 +50,12 @@ body{
   background: none;
   color: #777;
   text-decoration: underline;
+}
+
+.modal h1 {
+  margin-top: 0;
+}
+
+.modal p {
+  margin-bottom: 0;
 }
