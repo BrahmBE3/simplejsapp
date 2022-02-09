@@ -1,24 +1,8 @@
-<<<<<<< Updated upstream
-let pokemonRepository = (function() {
-    let pokemonList = [];
-    //api url of 150 pokemon with there name and further details imported
-let apiUrl ="https://pokeapi.co/api/v2/pokemon/?limit=150";
-    function add(pokemon) {
-      if (
-        typeof pokemon === "object" &&
-        "name" in pokemon
-
-      ) {
-       pokemonList.push(pokemon);
-      } else {
-        console.log("pokemon is not correct");
-      }
-=======
 
   //IIFE FUCTION ADDED
 let pokemonRepository = (function () {
 
-  let pokemonList = [];
+  let pokemonList =  [];
 
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
@@ -36,44 +20,45 @@ let pokemonRepository = (function () {
     } else
     {
     console.log("pokemon is not correct");
->>>>>>> Stashed changes
     }
+  }
 
-    function getAll() {
-      return pokemonList;
-    }
+  function getAll() {
+    return pokemonList;
+  }
 
-    function addListItem(pokemon) {
-      let pokemonList = document.querySelector(".pokemon-list");
-      // creating a list in tag <ul> using creat.element
-      let listpokemon = document.createElement("li");
-      let button = document.createElement("button");// button formation of the names of pokemon.
-      button.innerText = pokemon.name;// assigining the inner text of button with the name of pokemon.
-      button.classList.add("button-class");// button-class i s the class of tag <ul>
-      listpokemon.appendChild(button);
-      pokemonList.appendChild(listpokemon);
-      button.addEventListener("click", function(event)  {
-        showDetails(pokemon);
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+    button.addEventListener("click" ,function (event) {
+      showDetails(pokemon);
+    })
+  }
+
+    // adding the loadlist() function
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url,
+          // height: item.height,
+          // types: item.types
+        };
+        add(pokemon);
       });
-    }
-
-function loadList() {
-return fetch(apiUrl).then(function (response) {
- return response.json();
-}).then(function (json) {
- json.results.forEach(function (item) {
-   let pokemon = {
-     name: item.name,
-     detailsUrl: item.url
-   };
-   add(pokemon);
- });
-}).catch(function (e) {//adding the fuction error in case the list is fail to have a response.
- console.error(e);
-})
-}
-
-function loadDetails(item) {
+    }).catch(function (e) {
+      console.error(e);
+  })  }
+  // loadDetails fuction for getting details of height and type of pokemons
+  function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
@@ -86,60 +71,44 @@ function loadDetails(item) {
       console.error(e);
     });
   }
-
-  function showDetails(item) {
-    pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
-    });
-  }
-
-  let modalContainer = document.querySelector('#modal-container');
-
-  // REST OF CODE
-
+    // creating show modal
   function showModal(pokemon) {
-    // Clear all existing modal content
-    modalContainer.innerHTML = '';
-
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
-
-    // Add the new modal content
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'close';
+    // let modalConatiner = document.querySelector("#modal-container")
+    modalContainer.innerText = "";
+    //craeting div element
+    let modal = document.createElement("div");
+    // adding class to the div elemnt created above
+    modal.classList.add("modal");
+    //close button when clicked close off
+    let closeButtonElement = document.createElement("button");
+    closeButtonElement.classList.add("modal-close");
+    closeButtonElement.innerText = 'X';
     closeButtonElement.addEventListener('click', hideModal);
+    // creating content for modal
+    let modalTitle = document.createElement("h1");
+    modalTitle.innerText = pokemon.name[0].toUpperCase() + pokemon.name.substring(1);
+    let modalText = document.createElement("p");
+    modalText.innerText = pokemon.height;
 
-    let titleElement = document.createElement('h1');
-    titleElement.innerText = title;
-
-    let contentElement = document.createElement('p');
-    contentElement.innerText = text;
+    let modalImg = document.createElement("img");
+    modalImg.classList.add("modal-img");
+    modalImg.src = pokemon.imageUrl;
 
     modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
+    modal.appendChild(modalTitle);
+    modal.appendChild(modalText);
+    modal.appendChild(modalImg);
     modalContainer.appendChild(modal);
 
-    modalContainer.classList.add('is-visible');
+    modalContainer.classList.add("is-visible");
   }
 
-  function hideModal() {
-    modalContainer.classList.remove('is-visible');
+  function hideModal(){
+    modalContainer.classList.remove("is-visible");
   }
 
-  document.querySelector('#show-modal').addEventListener('click', () => {
-    showModal('Modal title', 'This is the modal content!');
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
-  });
-
-  modalContainer.addEventListener('click', (e) => {
-    // Since this is also triggered when clicking INSIDE the modal container,
+  modalContainer.addEventListener("click", (e) => {
+    // Since this is also triggered when clicking INSIDE the modal
     // We only want to close if the user clicks directly on the overlay
     let target = e.target;
     if (target === modalContainer) {
@@ -147,37 +116,36 @@ function loadDetails(item) {
     }
   });
 
-  // THE RETURN STATEMENT HERE
 
+  window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modalContainer.classList.contains("is-visible")) {
+        hideModal();
+      }
+    });
+
+
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      showModal(pokemon);
+   });
+  }
+
+  return {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails,
+    showModal: showModal,
+    hideModal: hideModal
+  };
 })();
-
-let container = document.querySelector('#image-container');
-
-// Create an <img> element
-let myImage = document.createElement('img');
-
-// setting `src` property to set the actual element's `src` attribute
-// this also works on <img> elements selected by querySelector() method, it is not specific for <img> elements created with createElement() methods
-myImage.src = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-
-container.appendChild(myImage);
-    return {
-      add: add,
-      getAll: getAll,
-      addListItem: addListItem,
-      loadList: loadList,
-      loadDetails: loadDetails,
-      showDetails: showDetails,
-      showModal: showModal,
-      hideModal: hideModal
-    };
-  })();
-// adding the new pokemon to pokemonlist repositorey
-  // pokemonRepository.add({ name: "bulbasauras", height: 1.3, types: ["water"], Category:"dragon" });
-  //
-  // console.log(pokemonRepository.getAll());
-
-  pokemonRepository.loadList().then(function () {
+//adding a pokemon into the pokemonRepository
+// pokemonRepository.add({ name: "Balbasur", height: 0.4, types: ["water"] });
+//
+// console.log(pokemonRepository.getAll());
+pokemonRepository.loadList().then(function(){
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
