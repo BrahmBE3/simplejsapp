@@ -17,13 +17,13 @@ body{
   margin: 2px 2px;
 
 }
-#modal-container {
+/* #modal-container {
   display: none;
 }
 
 #modal-container.is-visible {
   /* CSS for modal container - add your own desired CSS styles here */
-  display: block;
+/*  display: block;
   background-color: transparent;
   padding: 10px;
   max-width: 740px;
@@ -34,7 +34,7 @@ body{
   box-sizing: border-box;
   text-align: center;
   align-items: center;
-}
+}*/
 .modal {
   position: fixed;
   top: 50%;
@@ -59,3 +59,24 @@ body{
 .modal p {
   margin-bottom: 0;
 }
+.pokemon-title{
+  text-align: center;
+}
+
+#form-inline{
+  float: right;
+}
+
+.pokemonLogo{
+  float:left;
+  width: 5%;
+  height: 5%;
+}
+.list-container{
+  text-align: center;
+  /* box-sizing: border-box; */
+}
+
+/* .pokemonListItems-styling{
+  box-sizing: border-box;
+} */
