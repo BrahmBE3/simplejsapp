@@ -33,7 +33,7 @@ function addListItem (pokemon){
   pokemonListItems.classList.add("listItem-style")
   let modalButton = document.createElement("button");
 
-  modalButton.innerText = pokemon.name[0].toUpperCase() + pokemon.name.substring(1);;
+  modalButton.innerText = pokemon.name[0].toUpperCase() + pokemon.name.substring(1);
 
 modalButton.classList.add("searchButton");
 modalButton.classList.add("btn-primary");
